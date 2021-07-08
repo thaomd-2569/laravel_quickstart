@@ -46,6 +46,7 @@ class RouteServiceProvider extends ServiceProvider
 
         $this->mapWebRoutes();
 
+        $this->mapTaskRoutes();
         //
     }
 
@@ -76,5 +77,20 @@ class RouteServiceProvider extends ServiceProvider
             ->middleware('api')
             ->namespace($this->namespace)
             ->group(base_path('routes/api.php'));
+    }
+
+    /**
+     * Define the "task" routes for the application.
+     *
+     * using middleware auth
+     *
+     * @return void
+     */
+    protected function mapTaskRoutes()
+    {
+        Route::prefix('tasks')
+            ->middleware('auth')
+            ->namespace($this->namespace)
+            ->group(base_path('routes/task.php'));
     }
 }
